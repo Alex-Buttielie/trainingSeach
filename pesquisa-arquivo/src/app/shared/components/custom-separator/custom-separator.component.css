@@ -1,0 +1,14 @@
+.div-separator {
+    background-image: linear-gradient(to right, #39d219, #1e6e0d, #fafafa);
+    height: 2px;
+    border-color: #0a0555;
+    
+}
+
+.separator-main {
+    margin: 25px -1px;
+}
+
+.separator-main h2 {
+    margin: 0px !important;
+}

@@ -1,0 +1,36 @@
+<form
+  class="example-form"
+  [formGroup]="stateForm">
+  <mat-form-field class="example-full-width">
+    <ng-template #inputNormal>
+      <input
+        matInput
+        [type]="type"
+        mask="mascara"
+        [maxlength]="maxlength"
+        [required]="required"
+        (keyup)="$event.stopPropagation();eventoTeclado($event)"
+        [placeholder]="placeholder"
+        formControlName="valueText">
+    </ng-template>
+    <input
+      matInput
+      [required]="required"
+      [placeholder]="placeholder"
+      *ngIf="decimal;else inputNormal"
+      currencyMask
+      options="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+      formControlName="valueText">
+    <!-- <button
+      mat-button
+      *ngIf="stateForm.get('valueText').value"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="clearInput()">
+      <mat-icon>close</mat-icon>
+    </button> -->
+    <mat-hint>{{customHint}}</mat-hint>
+    <mat-error *ngIf="stateForm.get('valueText')?.invalid">Preenchimento obrigatório</mat-error>
+  </mat-form-field>
+</form>

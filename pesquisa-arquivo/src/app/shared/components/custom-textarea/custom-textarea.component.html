@@ -1,0 +1,15 @@
+<form
+  class="example-form"
+  [formGroup]="stateForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>{{placeholder}}</mat-label>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+      (input)="handleInput($event)"
+      formControlName="valueText"></textarea>
+    <mat-error *ngIf="stateForm.get('valueText')?.invalid">Preenchimento obrigatório</mat-error>
+  </mat-form-field>
+</form>

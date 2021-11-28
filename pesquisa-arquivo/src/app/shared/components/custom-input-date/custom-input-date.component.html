@@ -1,0 +1,20 @@
+<form
+  class="example-form"
+  [formGroup]="stateForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>{{placeholder}}</mat-label>
+    <input
+      matInput
+      [required]="required"
+      [matDatepicker]="pickerInicial"
+      (dateInput)="dateInputEvent($event)"
+      (dateChange)="dateChangeEvent($event)"
+      formControlName="dataValue">
+
+    <!--  -->
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="pickerInicial"></mat-datepicker-toggle>
+    <mat-datepicker #pickerInicial></mat-datepicker>
+  </mat-form-field>
+</form>

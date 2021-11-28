@@ -1,0 +1,20 @@
+<div
+  class="toolbar"
+  [style.backgroundColor]="cor"
+  role="banner">
+  <img
+    width="40"
+    alt="Angular Logo"
+    [src]="logo">
+  <span>{{titulo}}</span>
+  <div class="spacer"></div>
+  <a
+    *ngIf="dadosEmpresa"
+    style="margin-right: 10px;color:aliceblue;"
+    aria-label="Angular on twitter"
+    target="_blank"
+    rel="noopener"
+    title="Twitter">
+    {{dadosEmpresa?.nomeEmpresa}}
+  </a>
+</div>

@@ -1,0 +1,102 @@
+<mat-card class="pd-card">
+  <mat-card-content>
+
+    <form [formGroup]="formGroup">
+
+      <div class="row container flex flex-wrap">
+
+        <mat-form-field appearance="legacy" class="col-sm-3" type="date">
+          <mat-label>Data</mat-label>
+          <input matInput  [matDatepicker]="picker" formControlName="data" name="data">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="col-sm-4">
+          <input matInput formControlName="nome" placeholder="Nome arquivo">
+        </mat-form-field>
+
+        <mat-form-field class="col-sm-4">
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="tipo">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let tipo of tipo" [value]="tipo.valor">
+              {{tipo.descricao}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="example-button-row col-sm-12" id="button_consultar">
+          <button mat-raised-button color="primary" (click)="seachFolder()" class="btn-acessar">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">
+              search
+            </mat-icon>
+            Consultar
+          </button>
+        </div>
+      </div>
+
+      <mat-toolbar color="primary">
+        <span> Arquivos disponiveis</span>
+      </mat-toolbar>
+      <div *ngIf="arquivos$  | async as arquivos; else loading">
+        <table mat-table [dataSource]="arquivos" class="mat-elevation-z8">
+
+          <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="nome">
+            <th
+             mat-header-cell
+             *matHeaderCellDef> Nome </th>
+            <td mat-cell
+            *matCellDef="let arquivo">
+            {{arquivo.nome}}
+          </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+            <td mat-cell *matCellDef="let arquivo">
+              {{arquivo.tipo}}
+            </td>
+          </ng-container>
+
+             <!-- Name Column -->
+             <ng-container matColumnDef="qntLinhas">
+              <th mat-header-cell *matHeaderCellDef> Qnt. Linhas </th>
+              <td mat-cell *matCellDef="let arquivo">
+                {{arquivo.qntLinhas}}
+              </td>
+            </ng-container>
+
+               <!-- Name Column -->
+          <ng-container matColumnDef="valor">
+            <th mat-header-cell *matHeaderCellDef> Valor </th>
+            <td mat-cell *matCellDef="let arquivo">
+              {{arquivo.valor}}
+            </td>
+          </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="data">
+                <th mat-header-cell *matHeaderCellDef> Data </th>
+                <td mat-cell *matCellDef="let arquivo">
+                  {{arquivo.data}}
+                </td>
+              </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <ng-template #loading>
+        <div class="loading-spinner">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+    </form>
+  </mat-card-content>
+</mat-card>
